@@ -7,7 +7,7 @@
     "url": "git+https://github.com/defrostingk/211219_wetube.git"
   },
   "scripts": {
-    "win": "node index.js"
+    "dev": "babel-node index.js"
   },
   "author": "defrostingk",
   "license": "ISC",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.5",
     "@babel/preset-env": "^7.16.5"
   }
 }
