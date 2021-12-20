@@ -7,7 +7,7 @@
     "url": "git+https://github.com/defrostingk/211219_wetube.git"
   },
   "scripts": {
-    "dev": "nodemon --exec babel-node index.js"
+    "dev": "nodemon --exec babel-node src/server.js"
   },
   "author": "defrostingk",
   "license": "ISC",
