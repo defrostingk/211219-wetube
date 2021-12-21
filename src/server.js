@@ -16,6 +16,6 @@ const handleHome = (req, res) => {
 app.get("/", logger, handleHome);
 
 const handleListening = () =>
-  console.log(`Server listening on port httP://localhost:${PORT}`);
+  console.log(`Server listening on port http://localhost:${PORT}`);
 
 app.listen(PORT, handleListening);
