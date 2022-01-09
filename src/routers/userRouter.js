@@ -4,6 +4,7 @@ import {
   remove,
   logout,
   startGithubLogin,
+  finishGithubLogin,
   see,
 } from "../controllers/userController";
 
