@@ -10,20 +10,22 @@ html(lang="ko")
                 ul 
                     li 
                         a(href="/") Home
+                    li 
+                        a(href="/search") Search
                     if loggedIn
+                        li
+                            a(href="/videos/upload") Upload Video
+                        li 
+                            a(href=`/users/${loggedInUser._id}`) My Profile
                         li
                             a(href="/users/edit") Edit Profile
                         li
                             a(href="/users/logout") Log Out
-                        li
-                            a(href="/videos/upload") Upload Video
                     else
                         li 
                             a(href="/join") Join
                         li 
                             a(href="/login") Log In
-                    li 
-                        a(href="/search") Search
 
         main
             block content
