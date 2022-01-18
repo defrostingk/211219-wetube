@@ -162,6 +162,11 @@ header .header__btn {
   padding: 5px 10px;
   border-radius: 5px;
 }
+header .header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
 
 footer {
   text-align: center;
@@ -208,10 +213,10 @@ footer {
   text-decoration: underline;
 }
 
-.avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
+label {
+  font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
 }
 
 form {
@@ -259,12 +264,6 @@ input[type=submit],
   color: azure;
 }
 
-label {
-  font-size: 14px;
-  margin-bottom: 10px;
-  display: block;
-}
-
 .search__form {
   margin-bottom: 60px;
   display: flex;
@@ -296,6 +295,12 @@ label {
 }
 .profile__data h3 {
   font-size: 18px;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
 }
 
 .edit-profile__password {
