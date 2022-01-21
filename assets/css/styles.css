@@ -264,6 +264,32 @@ input[type=submit],
   color: azure;
 }
 
+#videoContainer {
+  width: 1280px;
+  height: 720px;
+}
+#videoContainer #timeline {
+  width: 1280px;
+}
+#videoContainer #videoControls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#videoContainer #videoControls .videoContainer__videoControls-timeline {
+  width: 1280px;
+}
+#videoContainer #videoControls .videoContainer__videoControls-btn {
+  width: 1280px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#videoContainer #videoControls .videoContainer__videoControls-btn .videoContainer__videoControls-btn-empty {
+  width: 900px;
+}
+
 .search__form {
   margin-bottom: 60px;
   display: flex;
