@@ -264,6 +264,68 @@ input[type=submit],
   color: azure;
 }
 
+.videoContainer {
+  width: 100%;
+  position: relative;
+}
+.videoContainer .screen {
+  width: 100%;
+}
+.videoContainer .videoControls {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: #0f1117;
+  border-radius: 10px;
+  box-sizing: border-box;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  margin: 0px auto;
+  padding: 15px;
+}
+.videoContainer .videoControls.showing {
+  opacity: 1;
+}
+.videoContainer .videoControls .videoControls__timeline {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.videoContainer .videoControls .videoControls__timeline input {
+  width: 100%;
+}
+.videoContainer .videoControls .videoControls__btn {
+  width: 100%;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 4fr 4fr 20fr auto;
+  gap: 10px;
+}
+.videoContainer .videoControls .videoControls__btn .videoControls__btn-play {
+  font-size: 20px;
+}
+.videoContainer .videoControls .videoControls__btn .videoControls__btn-volume {
+  display: flex;
+  align-items: center;
+}
+.videoContainer .videoControls .videoControls__btn .videoControls__btn-volume span {
+  margin-right: 10px;
+}
+.videoContainer .videoControls .videoControls__btn .videoControls__btn-volume span i {
+  font-size: 20px;
+}
+.videoContainer .videoControls .videoControls__btn .videoControls__btn-time {
+  font-size: 15px;
+}
+.videoContainer .videoControls .videoControls__btn .videoControls__btn-fullscreen {
+  font-size: 20px;
+}
+
 .search__form {
   margin-bottom: 60px;
   display: flex;
