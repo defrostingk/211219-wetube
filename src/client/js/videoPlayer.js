@@ -12,6 +12,7 @@ const fullscreenBtn = document.getElementById("fullscreenBtn");
 const fullscreenBtnIcon = fullscreenBtn.querySelector("i");
 const videoContainer = document.getElementById("videoContainer");
 const videoControls = document.getElementById("videoControls");
+const form = document.getElementById("commentForm");
 
 let controlsTimeout = null;
 let controlsMovementTimeout = null;
@@ -149,7 +150,9 @@ const handleMouseLeave = () => {
 };
 
 const handleKeydownPreventDefault = (event) => {
+  const textarea = form.querySelector("textarea");
   const { key } = event;
+  if (event.target === textarea) return;
   if (
     ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].indexOf(key) > -1
   ) {
@@ -158,9 +161,11 @@ const handleKeydownPreventDefault = (event) => {
 };
 
 const handleKeydown = (event) => {
+  const textarea = form.querySelector("textarea");
   const { key } = event;
   showControls();
   controlsMovementTimeout = setTimeout(hideControls, 3000);
+  if (event.target === textarea) return;
   if (key === " ") {
     togglePlay();
   } else if (key === "m" || key === "M") {
