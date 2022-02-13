@@ -6,7 +6,6 @@ import bcript from "bcrypt";
 export const getJoin = (req, res) =>
   res.render("users/join", { pageTitle: "Join" });
 export const postJoin = async (req, res) => {
-  console.log(req.body);
   const { name, email, username, password, password2, location } = req.body;
   const pageTitle = "Join";
   if (password !== password2) {
@@ -101,7 +100,6 @@ export const finishGithubLogin = async (req, res) => {
         },
       })
     ).json();
-    console.log(userData);
     const emailData = await (
       await fetch(`${apiUrl}/user/emails`, {
         headers: {

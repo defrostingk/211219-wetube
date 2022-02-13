@@ -11,7 +11,6 @@ export const home = async (req, res) => {
 export const watch = async (req, res) => {
   const { id } = req.params;
   const video = await Video.findById(id).populate("owner").populate("comments");
-  console.log(video);
   if (!video) {
     return res.status(404).render("404", { pageTitle: "Video not found." });
   }
@@ -45,7 +44,6 @@ export const postEdit = async (req, res) => {
   if (!video) {
     return res.render("404", { pageTitle: "Video not found." });
   }
-  console.log(video.owner, _id);
   if (String(video.owner) !== String(_id)) {
     req.flash("error", "You are not the owner of the video.");
     return res.status(403).redirect("/");
@@ -119,7 +117,6 @@ export const search = async (req, res) => {
       },
     }).populate("owner");
   }
-  console.log(videos);
   return res.render("videos/search", { pageTitle: "Search", videos });
 };
 
@@ -152,4 +149,18 @@ export const createComment = async (req, res) => {
   video.comments.push(comment._id);
   video.save();
   return res.status(201).json({ newCommentId: comment._id });
+};
+
+export const deleteComment = async (req, res) => {
+  const { id, videoid } = req.body; // comment id, video id
+  const { _id } = req.session.user; // user id
+  const { owner } = await Comment.findById(id);
+  const video = await Video.findById(videoid);
+  if (String(owner) !== _id) return res.sendStatus(403);
+  else {
+    await Comment.findByIdAndDelete(id);
+    video.comments.splice(video.comments.indexOf(videoid), 1);
+    video.save();
+    return res.sendStatus(200);
+  }
 };
