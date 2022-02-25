@@ -19,9 +19,9 @@ header
                             span 😃
                         else
                             if loggedInUser.avatarUrl.includes("github")
-                                img.header__avatar(src=loggedInUser.avatarUrl)
+                                img.header__avatar(src=loggedInUser.avatarUrl, crossorigin="use-credentials")
                             else 
-                                img.header__avatar(src="/" + loggedInUser.avatarUrl)
+                                img.header__avatar(src="/" + loggedInUser.avatarUrl, crossorigin="use-credentials")
 
 
             else
