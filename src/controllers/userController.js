@@ -3,20 +3,19 @@ import Video from "../models/Video";
 import fetch from "node-fetch";
 import bcript from "bcrypt";
 
-export const getJoin = (req, res) =>
-  res.render("users/join", { pageTitle: "Join" });
+export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res) => {
   const { name, email, username, password, password2, location } = req.body;
   const pageTitle = "Join";
   if (password !== password2) {
-    return res.status(400).render("users/join", {
+    return res.status(400).render("join", {
       pageTitle,
       errorMessage: "Password confirmation does not match.",
     });
   }
   const exists = await User.exists({ $or: [{ email }, { username }] });
   if (exists) {
-    return res.status(400).render("users/join", {
+    return res.status(400).render("join", {
       pageTitle,
       errorMessage: "This username/email is already taken.",
     });
@@ -31,27 +30,27 @@ export const postJoin = async (req, res) => {
     });
     return res.redirect("/login");
   } catch (error) {
-    return res.status(400).render("users/join", {
+    return res.status(400).render("join", {
       pageTitle,
       errorMessage: error._message,
     });
   }
 };
 export const getLogin = (req, res) =>
-  res.render("users/login", { pageTitle: "Login" });
+  res.render("login", { pageTitle: "Login" });
 export const postLogin = async (req, res) => {
   const { username, password } = req.body;
   const pageTitle = "Login";
   const user = await User.findOne({ username, socialOnly: false });
   if (!user) {
-    return res.status(400).render("users/login", {
+    return res.status(400).render("login", {
       pageTitle,
       errorMessage: "An account with this username does not exists.",
     });
   }
   const ok = await bcript.compare(password, user.password);
   if (!ok) {
-    return res.status(400).render("users/login", {
+    return res.status(400).render("login", {
       pageTitle,
       errorMessage: "Wrong password",
     });
@@ -140,7 +139,7 @@ export const logout = (req, res) => {
   return res.redirect("/");
 };
 export const getEdit = (req, res) => {
-  return res.render("users/edit-profile", { pageTitle: "Edit Profile" });
+  return res.render("edit-profile", { pageTitle: "Edit Profile" });
 };
 export const postEdit = async (req, res) => {
   const {
