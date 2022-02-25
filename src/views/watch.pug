@@ -1,4 +1,4 @@
-extends ../base.pug
+extends base.pug
 
 block content 
     div#videoContainer.videoContainer(data-id=video._id)
@@ -51,7 +51,7 @@ block content
                         span.video__comment-delete#deleteCommentBtn(data-id=comment._id)(data-videoId=video._id) ❌
 
 block scripts
-    script(src="../static/js/videoPlayer.js")
+    script(src="static/js/videoPlayer.js")
     if loggedIn
-        script(src="../static/js/commentSection.js")
+        script(src="static/js/commentSection.js")
     
