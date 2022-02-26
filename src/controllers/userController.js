@@ -149,6 +149,7 @@ export const postEdit = async (req, res) => {
     body: { name, email, username, location },
     file,
   } = req;
+  const isHeroku = process.env.NODE_ENV === "production";
   const existsEmail = await User.exists({ email });
   const existsUsername = await User.exists({ username });
   const thisUser = await User.findById(_id, { email, username });
@@ -168,7 +169,7 @@ export const postEdit = async (req, res) => {
     const updatedUser = await User.findByIdAndUpdate(
       _id,
       {
-        avatarUrl: file ? file.location : avatarUrl,
+        avatarUrl: file ? (isHeroku ? file.location : file.path) : avatarUrl,
         name,
         email,
         username,
@@ -180,7 +181,7 @@ export const postEdit = async (req, res) => {
     return res.redirect("/users/edit");
   }
 
-  return res.status(400).render("users/edit-profile", {
+  return res.status(400).render("edit-profile", {
     pageTitle: "Edit Profile",
     errorMessage,
   });
@@ -191,7 +192,7 @@ export const getChangePassword = (req, res) => {
     req.flash("error", "Can't change password.");
     return res.redirect("/");
   }
-  return res.render("users/change-password", { pageTitle: "Change Password" });
+  return res.render("change-password", { pageTitle: "Change Password" });
 };
 export const postChangePassword = async (req, res) => {
   const {
@@ -203,13 +204,13 @@ export const postChangePassword = async (req, res) => {
   const user = await User.findById(_id);
   const ok = await bcript.compare(oldPassword, user.password);
   if (!ok) {
-    return res.status(400).render("users/change-password", {
+    return res.status(400).render("change-password", {
       pageTitle: "Change Password",
       errorMessage: "The current password is incorrect.",
     });
   }
   if (newPassword !== newPassword2) {
-    return res.status(400).render("users/change-password", {
+    return res.status(400).render("change-password", {
       pageTitle: "Change Password",
       errorMessage: "The new password does not match the confirmation.",
     });
@@ -232,7 +233,7 @@ export const see = async (req, res) => {
   if (!user) {
     return res.status(404).render("404", { pageTitle: "User not found." });
   }
-  return res.render("users/profile", {
+  return res.render("profile", {
     pageTitle: user.name,
     user,
   });
